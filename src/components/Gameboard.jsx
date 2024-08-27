@@ -12,14 +12,14 @@ export default function Gameboard() {
     function handleSelectSquare(rowIndex, colIndex) {
         setGameBoard((prevGameBoard) => {
             const updatedBoard = [...prevGameBoard.map(innerArray => [...innerArray])];
-            prevGameBoard[rowIndex][colIndex] = 'X';
+            updatedBoard[rowIndex][colIndex] = 'X';
             return updatedBoard;
         });
     }
 
     return (
         <ol id='game-board'>
-          {initialGameBoard.map(
+          {gameBoard.map(
             (row, rowIndex) => <li key={rowIndex} >
                 <ol>
                     {row.map((playerSymbol, colIndex) => (
