@@ -6,15 +6,17 @@ const initialGameBoard = [
     [null, null, null]
 ];
 
-export default function Gameboard() {
+export default function Gameboard({onSelectSquare, activePlayerSymbol}) {
     const [gameBoard, setGameBoard] = useState(initialGameBoard);
 
     function handleSelectSquare(rowIndex, colIndex) {
         setGameBoard((prevGameBoard) => {
             const updatedBoard = [...prevGameBoard.map(innerArray => [...innerArray])];
-            updatedBoard[rowIndex][colIndex] = 'X';
+            updatedBoard[rowIndex][colIndex] = activePlayerSymbol; // adds an X or O when col is clicked
             return updatedBoard;
         });
+
+        onSelectSquare();
     }
 
     return (
@@ -33,3 +35,5 @@ export default function Gameboard() {
         </ol>
     );
 }
+
+// NOTE TO SELF: REVIEW MODULE 82 LIFTING STATE UP

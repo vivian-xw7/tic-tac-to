@@ -1,19 +1,23 @@
 import Player from './components/Player';
 import Gameboard from './components/Gameboard';
+import { useState } from 'react';
 
 function App() {
-  
+  const [activePlayer, setActivePlayer] = useState('X');
+
+  function handleSelectSquare() {
+    setActivePlayer((currentActivePlayer) => currentActivePlayer === 'X' ? 'O' : 'X');
+  }
 
   return (
     <main>
       <div id="game-container">
-        {/* PLAYERS */}
-        <ol id="players">
-          <Player initialName="Player 1" symbol="X" />
-          <Player initialName="Player 2" symbol="O" />
+        <ol id="players" className='highlight-player'>
+          <Player initialName="Player 1" symbol="X" isActive={activePlayer === 'X'} />
+          <Player initialName="Player 2" symbol="O" isActive={activePlayer === 'O'} />
         </ol>
 
-        <Gameboard />
+        <Gameboard onSelectSquare={handleSelectSquare} activePlayerSymbol={activePlayer} />
       </div>
 
       {/* LOG */}
@@ -22,3 +26,5 @@ function App() {
 }
 
 export default App
+
+// NOTE TO SELF: REVIEW MODULE 82 LIFTING STATE UP
