@@ -5,6 +5,14 @@ const initialGameBoard = [
 ];
 
 export default function Gameboard() {
+    const [gameBoard, setGameBoard] = useState(initialGameBoard);
+
+    function handleSelectSquare(rowIndex, colIndex) {
+        setGameBoard((prevGameBoard) => {
+            prevGameBoard[rowIndex][colIndex] = 'X';
+        });
+    }
+
     return (
         <ol id='game-board'>
           {initialGameBoard.map(
